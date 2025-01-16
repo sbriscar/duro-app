@@ -1,3 +1,10 @@
 # Large files
 .next/cache/webpack/server-production/
 node_modules/@next/swc-win32-x64-msvc/ 
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local 
