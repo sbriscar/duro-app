@@ -1,4 +1,4 @@
-import dialogflow from '@google-cloud/dialogflow'
+import * as dialogflow from '@google-cloud/dialogflow'
 import { v4 as uuidv4 } from 'uuid'
 
 interface DialogflowResponse {
