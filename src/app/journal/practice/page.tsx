@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import { journalService } from '@/lib/journalService'
-import { Rating } from '@/types/journal'
+import { Rating, PracticeJournalEntry } from '@/types/journal'
 
 interface FormData {
   date: string
@@ -69,14 +69,16 @@ export default function PracticeJournalPage() {
     setError(null)
 
     try {
-      await journalService.createEntry(user.uid, {
+      const entry: Omit<PracticeJournalEntry, 'id' | 'createdAt' | 'updatedAt'> = {
+        userID: user.uid,
         type: 'practice',
         date: formData.date,
         goalsForNextPractice: formData.goalsForNextPractice,
         accomplishments: formData.accomplishments,
         biggestChallenge: formData.biggestChallenge,
         ratings: formData.ratings
-      })
+      }
+      await journalService.createEntry(entry)
       router.push('/journal')
     } catch (error: any) {
       setError(error.message || 'Failed to save journal entry')
