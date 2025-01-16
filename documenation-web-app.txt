@@ -1,0 +1,121 @@
+# Duro Sports Psychology Chatbot Application
+
+## Overview
+A Next.js application providing sports psychology support through an AI chatbot named Ashley, featuring user authentication, chat functionality, journal system, and feedback collection.
+
+## Core Features
+
+### 1. Authentication System
+- Firebase Authentication integration
+- Protected routes requiring login
+- User sessions persist for 30 days
+- Routes: `/login`, `/signup`
+
+### 2. Chat Interface
+- AI-powered chatbot (Ashley) using OpenAI
+- Real-time messaging
+- Chat categorization (anxiety, confidence, burnout, motivation, general)
+- Message history storage in Firebase
+- Collection: `chats` with fields:
+  - `userID` (string)
+  - `lastMessageAt` (timestamp)
+  - `type` (string)
+  - Required index: `userID` (Asc), `lastMessageAt` (Desc), `__name__` (Desc)
+
+### 3. Journal System
+- Three types of journals:
+  1. Practice Journal
+     - Goals for next practice
+     - Accomplishments
+     - Biggest challenges
+     - Performance ratings
+  2. Competition Journal
+     - Specific goals
+     - What went well
+     - Enjoyable moments
+     - Performance ratings
+  3. Mood Tracker
+     - Daily mood selection
+     - Optional notes
+- Collection: `journal_entries` with fields:
+  - `userID` (string)
+  - `type` ('practice'|'competition'|'mood')
+  - `date` (string)
+  - Required index: `userID` (Asc), `date` (Desc)
+
+### 4. Feedback System
+- Beta testing feedback collection
+- 5-star rating system
+- Feature selection
+- Bug reporting
+- File upload capability
+- Collection: `feedback`
+
+## Technical Stack
+- Frontend: Next.js 13+ with App Router
+- Authentication: Firebase Auth
+- Database: Firebase Firestore
+- Storage: Firebase Storage
+- AI Integration: OpenAI API
+- Styling: Tailwind CSS
+
+## Directory Structure
+src/
+├── app/
+│ ├── (auth)/
+│ │ ├── login/
+│ │ └── signup/
+│ ├── dashboard/
+│ ├── journal/
+│ ├── feedback/
+│ └── profile/
+├── components/
+│ ├── ChatInterface.tsx
+│ └── [other components]
+├── lib/
+│ ├── chatService.ts
+│ ├── journalService.ts
+│ ├── feedbackService.ts
+│ └── firebase.ts
+├── types/
+│ ├── journal.ts
+│ ├── chat.ts
+│ └── index.ts
+└── contexts/
+└── AuthContext.tsx
+
+
+## Recent Changes
+1. Updated field naming convention from `userId` to `userID` across the application
+2. Added proper Firebase indexes for chat and journal queries
+3. Implemented journal dashboard with mood trends visualization
+4. Added feedback system for beta testing
+5. Fixed authentication context integration
+
+## Firebase Security Rules
+- Chat access limited to authenticated users
+- Journal entries accessible only by their creators
+- Profile deletion prevented
+- Feedback visible to admins and creators
+
+## Known Requirements
+1. Firebase project setup with Authentication, Firestore, and Storage
+2. Required indexes in Firestore:
+   - `chats`: (`userID` Asc, `lastMessageAt` Desc, `__name__` Desc)
+   - `journal_entries`: (`userID` Asc, `date` Desc)
+3. OpenAI API key for chat functionality
+4. Environment variables configuration
+
+## Current Status
+The application is functional with all core features implemented. Users can:
+1. Sign up and log in
+2. Chat with Ashley (the AI chatbot)
+3. Create and view journal entries
+4. Submit feedback during beta testing
+5. View their chat history and journal statistics
+
+## Next Steps
+1. Testing the journal system thoroughly
+2. Enhancing the chat interface
+3. Adding more features to the dashboard
+4. Implementing additional user profile options

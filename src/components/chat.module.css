@@ -1,0 +1,92 @@
+.container {
+  @apply flex flex-col h-[calc(100vh-180px)];
+}
+
+.mainContent {
+  @apply flex flex-col flex-1 overflow-auto;
+}
+
+.profileSection {
+  @apply flex flex-col items-center justify-center pt-8 pb-6;
+}
+
+.profileImage {
+  @apply w-20 h-20 rounded-full object-cover mb-4;
+}
+
+.heading {
+  @apply text-xl font-medium mb-6;
+}
+
+.inputWrapper {
+  @apply w-full max-w-lg px-4;
+}
+
+.input {
+  @apply w-full px-4 py-3 rounded-full bg-gray-50 border border-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#4ecdc4];
+}
+
+.sendButton {
+  @apply absolute right-8 top-1/2 -translate-y-1/2 text-[#4ecdc4] hover:text-[#3dbdaf] transition-colors;
+}
+
+.promptSection {
+  @apply px-4 mt-8;
+}
+
+.promptList {
+  @apply space-y-2;
+}
+
+.promptButton {
+  @apply flex items-center gap-3 w-full px-4 py-3 text-left text-gray-800 hover:bg-gray-50 rounded-lg transition-colors;
+}
+
+.historySection {
+  @apply px-4 mt-8;
+}
+
+.historyList {
+  @apply space-y-2;
+}
+
+.historyItem {
+  @apply flex items-center gap-3 w-full px-4 py-3 text-left text-gray-800 hover:bg-gray-50 rounded-lg transition-colors;
+}
+
+.historyDate {
+  @apply text-sm text-gray-500 ml-auto;
+}
+
+.historyPreview {
+  @apply text-sm text-gray-600;
+}
+
+/* Message specific styles */
+.messageList {
+  @apply flex-1 overflow-auto p-4 space-y-4;
+}
+
+.messageWrapper {
+  @apply flex items-start gap-3;
+}
+
+.message {
+  @apply px-4 py-2 rounded-lg max-w-[85%];
+}
+
+.userMessage .message {
+  @apply bg-[#4ecdc4] text-white;
+}
+
+.botMessage .message {
+  @apply bg-gray-100 text-gray-800;
+}
+
+.botAvatar, .userAvatar {
+  @apply w-8 h-8 rounded-full;
+}
+
+.inputArea {
+  @apply relative px-4 py-3;
+} 
