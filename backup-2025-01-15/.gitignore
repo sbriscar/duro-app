@@ -40,3 +40,6 @@ yarn-error.log*
 # Ensure important files like index.js are not ignored
 !src/pages/index.js
 !src/app/page.tsx
+
+# Ensure node_modules and its contents are ignored
+node_modules/
