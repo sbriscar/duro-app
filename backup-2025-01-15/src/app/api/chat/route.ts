@@ -58,7 +58,7 @@ export async function POST(req: Request) {
     const { message, messages = [] } = await req.json()
     
     // Convert previous messages to OpenAI format
-    const conversationHistory = messages.map(msg => ({
+    const conversationHistory = messages.map((msg: { role: string; content: string }) => ({
       role: msg.role,
       content: msg.content
     }))
