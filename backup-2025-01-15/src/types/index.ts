@@ -3,7 +3,7 @@ import { User as FirebaseUser } from 'firebase/auth'
 export interface Message {
   id: string
   message: string
-  userId: string
+  userID: string
   role: 'user' | 'assistant'
   sessionId: string
   timestamp: string
@@ -11,7 +11,7 @@ export interface Message {
 
 export interface ChatSession {
   id: string
-  userId: string
+  userID: string
   type: string
   title: string
   preview: string

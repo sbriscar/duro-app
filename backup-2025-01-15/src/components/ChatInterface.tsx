@@ -193,7 +193,7 @@ export default function ChatInterface({
       const userMessage: Message = {
         id: Date.now().toString(),
         message: content,
-        userId: user.uid,
+        userID: user.uid,
         role: 'user',
         sessionId,
         timestamp: new Date().toISOString()
@@ -231,7 +231,7 @@ export default function ChatInterface({
       const aiMessage: Message = {
         id: Date.now().toString(),
         message: data.message,
-        userId: user.uid,
+        userID: user.uid,
         role: 'assistant',
         sessionId,
         timestamp: new Date().toISOString()
