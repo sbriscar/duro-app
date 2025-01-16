@@ -69,7 +69,7 @@ export default function ProfilePage() {
         if (profile) {
           setFormData({
             ...profile,
-            email: user.email // Keep email from auth
+            email: user.email || ''
           })
         } else {
           // Initialize with auth data if no profile exists
