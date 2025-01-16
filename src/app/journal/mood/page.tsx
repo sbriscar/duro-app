@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import { journalService } from '@/lib/journalService'
-import { Mood } from '@/types/journal'
+import { Mood, MoodJournalEntry } from '@/types/journal'
 
 interface FormData {
   date: string
@@ -59,12 +59,14 @@ export default function MoodTrackerPage() {
     setError(null)
 
     try {
-      await journalService.createEntry(user.uid, {
+      const entry: Omit<MoodJournalEntry, 'id' | 'createdAt' | 'updatedAt'> = {
+        userID: user.uid,
         type: 'mood',
         date: formData.date,
         mood: formData.mood,
         note: formData.note
-      })
+      }
+      await journalService.createEntry(entry)
       router.push('/journal')
     } catch (error: any) {
       setError(error.message || 'Failed to save mood entry')
