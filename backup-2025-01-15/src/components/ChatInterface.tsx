@@ -195,7 +195,7 @@ export default function ChatInterface({
         message: content,
         userID: user.uid,
         role: 'user',
-        sessionId,
+        sessionId: sessionId,
         timestamp: new Date().toISOString()
       }
       
@@ -233,7 +233,7 @@ export default function ChatInterface({
         message: data.message,
         userID: user.uid,
         role: 'assistant',
-        sessionId,
+        sessionId: sessionId,
         timestamp: new Date().toISOString()
       }
       await chatService.createMessage(aiMessage)
