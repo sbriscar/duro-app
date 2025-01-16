@@ -36,3 +36,7 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# Ensure important files like index.js are not ignored
+!src/pages/index.js
+!src/app/page.tsx
