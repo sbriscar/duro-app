@@ -41,5 +41,8 @@ yarn-error.log*
 !src/pages/index.js
 !src/app/page.tsx
 
+# Ensure .next and its contents are ignored
+.next/
+
 # Ensure node_modules and its contents are ignored
 node_modules/
