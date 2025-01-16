@@ -46,3 +46,6 @@ yarn-error.log*
 
 # Ensure node_modules and its contents are ignored
 node_modules/
+
+# Specific large files
+next-swc.win32-x64-msvc.node

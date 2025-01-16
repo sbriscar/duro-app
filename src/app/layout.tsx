@@ -2,6 +2,11 @@ import { GeistSans } from 'geist/font'
 import './globals.css'
 import { AuthProvider } from '@/contexts/AuthContext'
 
+export const metadata = {
+  title: 'Volleyball Threads',
+  description: 'Your AI-powered volleyball mentor',
+}
+
 export default function RootLayout({
   children,
 }: {
