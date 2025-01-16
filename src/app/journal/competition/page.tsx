@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import { journalService } from '@/lib/journalService'
-import { Rating } from '@/types/journal'
+import { Rating, CompetitionJournalEntry } from '@/types/journal'
 
 interface FormData {
   date: string
@@ -72,14 +72,16 @@ export default function CompetitionJournalPage() {
     setError(null)
 
     try {
-      await journalService.createEntry(user.uid, {
+      const entry: Omit<CompetitionJournalEntry, 'id' | 'createdAt' | 'updatedAt'> = {
+        userID: user.uid,
         type: 'competition',
         date: formData.date,
         specificGoals: formData.specificGoals,
         whatWentWell: formData.whatWentWell,
         enjoyableMoments: formData.enjoyableMoments,
         ratings: formData.ratings
-      })
+      }
+      await journalService.createEntry(entry)
       router.push('/journal')
     } catch (error: any) {
       console.error('Error saving journal entry:', error)
