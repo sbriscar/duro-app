@@ -14,7 +14,18 @@ const nextConfig = {
         permanent: true,
       },
     ]
+  },
+  // Add trailing slashes to ensure consistent routing
+  trailingSlash: true,
+  // Ensure pages are properly exported
+  exportPathMap: async function () {
+    return {
+      '/': { page: '/' },
+      '/login': { page: '/login' },
+      '/signup': { page: '/signup' },
+      '/dashboard': { page: '/dashboard' },
+    }
   }
-};
+}
 
 module.exports = nextConfig; 
