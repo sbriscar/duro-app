@@ -1,0 +1,3 @@
+# Large files
+.next/cache/webpack/server-production/
+node_modules/@next/swc-win32-x64-msvc/ 
