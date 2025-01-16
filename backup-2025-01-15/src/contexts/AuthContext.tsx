@@ -53,9 +53,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser: FirebaseUser | null) => {
       if (firebaseUser && firebaseUser.email) {
         const appUser: User = {
-          id: firebaseUser.uid,
+          uid: firebaseUser.uid,
           email: firebaseUser.email,
-          name: firebaseUser.displayName || firebaseUser.email.split('@')[0]
+          displayName: firebaseUser.displayName
         }
         setUser(appUser)
       } else {
@@ -95,9 +95,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const result = await signInWithEmailAndPassword(auth, email, password)
       if (result.user && result.user.email) {
         const appUser: User = {
-          id: result.user.uid,
+          uid: result.user.uid,
           email: result.user.email,
-          name: result.user.displayName || result.user.email.split('@')[0]
+          displayName: result.user.displayName
         }
         setUser(appUser)
       }

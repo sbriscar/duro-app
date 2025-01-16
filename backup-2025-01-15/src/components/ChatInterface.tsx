@@ -150,7 +150,7 @@ export default function ChatInterface({
   const loadSessions = async () => {
     if (!user) return
     try {
-      const loadedSessions = await chatService.getSessions(user.id)
+      const loadedSessions = await chatService.getSessions(user.uid)
       setSessions(loadedSessions)
     } catch (error) {
       console.error('Failed to load sessions:', error)
@@ -185,7 +185,7 @@ export default function ChatInterface({
       if (!sessionId || sessionId === 'new') {
         console.log('Creating new session...')
         const chatType = getChatType(content)
-        sessionId = await chatService.createSession(user.id, chatType, content)
+        sessionId = await chatService.createSession(user.uid, chatType, content)
         setCurrentSessionId(sessionId)
       }
 
@@ -193,7 +193,7 @@ export default function ChatInterface({
       const userMessage: Message = {
         id: Date.now().toString(),
         message: content,
-        userId: user.id,
+        userId: user.uid,
         role: 'user',
         sessionId,
         timestamp: new Date().toISOString()
@@ -231,7 +231,7 @@ export default function ChatInterface({
       const aiMessage: Message = {
         id: Date.now().toString(),
         message: data.message,
-        userId: user.id,
+        userId: user.uid,
         role: 'assistant',
         sessionId,
         timestamp: new Date().toISOString()
