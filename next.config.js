@@ -3,9 +3,9 @@ const nextConfig = {
   output: 'standalone',
   reactStrictMode: true,
   swcMinify: true,
-  // Remove asset prefix since we're using a custom domain
-  // Ensure proper base path
-  basePath: '',
+  experimental: {
+    serverActions: true
+  },
   async redirects() {
     return [
       {
@@ -13,41 +13,25 @@ const nextConfig = {
         destination: '/dashboard',
         permanent: true,
       },
-      // Redirect www to non-www
-      {
-        source: '/:path*',
-        has: [
-          {
-            type: 'host',
-            value: 'www.volleyballthreads.com',
-          },
-        ],
-        destination: 'https://volleyballthreads.com/:path*',
-        permanent: true,
-      }
     ]
   },
-  // Add trailing slashes to ensure consistent routing
-  trailingSlash: true,
-  // Image optimization configuration
-  images: {
-    domains: ['firebasestorage.googleapis.com'],
-    unoptimized: true
+  async rewrites() {
+    return {
+      beforeFiles: [
+        // Handle www to non-www redirect
+        {
+          source: '/:path*',
+          has: [
+            {
+              type: 'host',
+              value: 'volleyballthreads.com',
+            },
+          ],
+          destination: 'https://www.volleyballthreads.com/:path*',
+        },
+      ],
+    }
   },
-  // Static file serving configuration
-  async headers() {
-    return [
-      {
-        source: '/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-    ]
-  }
 }
 
-module.exports = nextConfig; 
+module.exports = nextConfig 

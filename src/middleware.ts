@@ -5,13 +5,14 @@ import type { NextRequest } from 'next/server'
 const publicPaths = ['/', '/login', '/signup']
 
 export function middleware(request: NextRequest) {
-  const { pathname, host } = request.nextUrl
+  const { pathname } = request.nextUrl
+  const hostname = request.headers.get('host') || ''
 
   // Handle domain redirection
-  if (host === 'www.volleyballthreads.com') {
+  if (hostname === 'volleyballthreads.com') {
     const newUrl = new URL(request.url)
-    newUrl.host = 'volleyballthreads.com'
-    return NextResponse.redirect(newUrl)
+    newUrl.host = 'www.volleyballthreads.com'
+    return NextResponse.redirect(newUrl, { status: 301 })
   }
 
   // Allow public routes
