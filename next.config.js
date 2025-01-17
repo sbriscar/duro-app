@@ -3,8 +3,7 @@ const nextConfig = {
   output: 'standalone',
   reactStrictMode: true,
   swcMinify: true,
-  // Ensure proper asset prefix for production
-  assetPrefix: process.env.NODE_ENV === 'production' ? '.' : '',
+  // Remove asset prefix since we're using a custom domain
   // Ensure proper base path
   basePath: '',
   async redirects() {
@@ -14,6 +13,18 @@ const nextConfig = {
         destination: '/dashboard',
         permanent: true,
       },
+      // Add www to non-www redirect
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'volleyballthreads.com',
+          },
+        ],
+        destination: 'https://www.volleyballthreads.com/:path*',
+        permanent: true,
+      }
     ]
   },
   // Add trailing slashes to ensure consistent routing
