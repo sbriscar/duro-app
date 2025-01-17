@@ -12,25 +12,12 @@ class DialogflowService {
   private projectId: string
 
   constructor() {
-    // The projectId and credentials will be loaded from environment variables
     this.projectId = process.env.DIALOGFLOW_PROJECT_ID || ''
     
-    // Debug logging
-    console.log('Initializing DialogflowService with:')
-    console.log('Project ID:', this.projectId)
-    console.log('Client Email:', process.env.DIALOGFLOW_CLIENT_EMAIL)
-    console.log('Private Key exists:', !!process.env.DIALOGFLOW_PRIVATE_KEY)
-    
-    // Initialize the SessionsClient with credentials
     const credentials = {
       client_email: process.env.DIALOGFLOW_CLIENT_EMAIL,
-      private_key: process.env.DIALOGFLOW_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+      private_key: process.env.DIALOGFLOW_PRIVATE_KEY
     }
-    
-    console.log('Credentials being used:', {
-      client_email: credentials.client_email,
-      private_key_length: credentials.private_key?.length
-    })
     
     this.sessionClient = new dialogflow.SessionsClient({
       credentials,
