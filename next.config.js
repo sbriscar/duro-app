@@ -13,16 +13,16 @@ const nextConfig = {
         destination: '/dashboard',
         permanent: true,
       },
-      // Add www to non-www redirect
+      // Redirect www to non-www
       {
         source: '/:path*',
         has: [
           {
             type: 'host',
-            value: 'volleyballthreads.com',
+            value: 'www.volleyballthreads.com',
           },
         ],
-        destination: 'https://www.volleyballthreads.com/:path*',
+        destination: 'https://volleyballthreads.com/:path*',
         permanent: true,
       }
     ]

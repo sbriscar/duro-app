@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://www.volleyballthreads.com/sitemap.xml 
+Sitemap: https://volleyballthreads.com/sitemap.xml 
