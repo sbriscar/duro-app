@@ -3,6 +3,10 @@ const nextConfig = {
   output: 'standalone',
   reactStrictMode: true,
   swcMinify: true,
+  // Ensure proper asset prefix for production
+  assetPrefix: process.env.NODE_ENV === 'production' ? '.' : '',
+  // Ensure proper base path
+  basePath: '',
   async redirects() {
     return [
       {

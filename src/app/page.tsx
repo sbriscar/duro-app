@@ -11,15 +11,15 @@ export default function Home() {
   useEffect(() => {
     if (!loading) {
       if (user) {
-        router.push('/dashboard')
+        router.replace('/dashboard')
       } else {
-        router.push('/login')
+        router.replace('/login')
       }
     }
   }, [loading, user, router])
 
   return (
-    <div className="flex h-screen items-center justify-center">
+    <div className="flex h-screen items-center justify-center bg-white">
       <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-[#4ecdc4]"></div>
     </div>
   )
