@@ -3,9 +3,6 @@ const nextConfig = {
   output: 'standalone',
   reactStrictMode: true,
   swcMinify: true,
-  experimental: {
-    serverActions: true
-  },
   async redirects() {
     return [
       {
@@ -16,7 +13,26 @@ const nextConfig = {
     ]
   },
   // Add trailing slashes to ensure consistent routing
-  trailingSlash: true
+  trailingSlash: true,
+  // Image optimization configuration
+  images: {
+    domains: ['firebasestorage.googleapis.com'],
+    unoptimized: true
+  },
+  // Static file serving configuration
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ]
+  }
 }
 
 module.exports = nextConfig; 

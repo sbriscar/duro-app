@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { IconType } from 'react-icons'
 import { 
   FiMessageSquare, 
@@ -13,6 +14,7 @@ import {
   FiLogOut 
 } from 'react-icons/fi'
 import { useAuth } from '@/contexts/AuthContext'
+import { useEffect } from 'react'
 
 interface MenuItem {
   label: string
@@ -46,7 +48,26 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode
 }) {
-  const { signOut } = useAuth()
+  const { user, loading, signOut } = useAuth()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!loading && !user) {
+      router.push('/login')
+    }
+  }, [loading, user, router])
+
+  if (loading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-[#4ecdc4]"></div>
+      </div>
+    )
+  }
+
+  if (!user) {
+    return null
+  }
 
   return (
     <div className="flex h-screen bg-white">
